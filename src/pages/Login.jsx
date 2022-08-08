@@ -12,6 +12,8 @@ export function Login() {
     if (email != '' && senha != '') {
       setEmail(email);
       setSenha(senha);
+    } else {
+      alert("informe email e senha")
     }
   }
 
@@ -52,7 +54,7 @@ export function Login() {
 
                           <div style={{ paddingTop: '20px' }}>
                             <button type="submit" className="btn btn-success" style={{ marginRight: '15px' }}>Login</button>
-                            <Link to={"/cadastrar"} className="btn btn-danger">Cadastrar</Link>
+                            <Link to={"/cadastrar"} className="btn btn-info">Cadastrar</Link>
                           </div>
 
                         </div>
