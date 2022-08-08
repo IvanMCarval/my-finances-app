@@ -13,27 +13,28 @@ export function Cadastrar() {
                     <form>
                       <fieldset>
                         <div className="form-group">
-                          <div className="form-group">
-                            <label for="exampleInputEmail1">Nome: *</label>
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite o Nome"></input>
+                          <div className="form-group" style={{marginBottom: '10px'}}>
+                            <label>Nome: *</label>
+                            <input type="email" className="form-control" placeholder="Digite o Nome"></input>
                           </div>
-                          <div className="form-group">
-                            <label for="exampleInputEmail1">Email: *</label>
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite o Email"></input>
-                            <small id="emailHelp" className="form-text text-muted">Não divulgamos o seu email.</small>
+                          <div className="form-group" style={{marginBottom: '10px'}}>
+                            <label>Email: *</label>
+                            <input type="email" className="form-control" placeholder="Digite o Email"></input>
                           </div>
-                          <div className="form-group">
-                            <label for="exampleInputPassword1">Senha: *</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Repita a Senha: *</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+                          <div className="form-group" style={{marginBottom: '10px'}}>
+                            <label>Senha: *</label>
+                            <input type="password" className="form-control" placeholder="Password"></input>
                           </div>
 
-                          <button type="button" className="btn btn-success">Salvar</button>
-                          <button type="button" className="btn btn-danger">Voltar</button>
+                          <div className="form-group">
+                            <label>Repita a Senha: *</label>
+                            <input type="password" className="form-control" placeholder="Password"></input>
+                          </div>
+
+                          <div style={{ paddingTop: '20px' }}>
+                            <button type="button" className="btn btn-success" style={{ marginRight: '15px' }}>Salvar</button>
+                            <button type="button" className="btn btn-danger">Voltar</button>
+                          </div>
                         </div>
                       </fieldset>
                     </form>

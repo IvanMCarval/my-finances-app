@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card } from "../components/Card";
 
 export function Login() {
@@ -28,10 +29,10 @@ export function Login() {
                       <fieldset>
                         <div className="form-group" style={{ marginTop: '-50px' }}>
                           <div className="form-group">
-                            <label class="form-label mt-4">Email address</label>
+                            <label className="form-label mt-4">Email address</label>
                             <input
                               type="email"
-                              class="form-control"
+                              className="form-control"
                               placeholder="Enter email"
                               onChange={event => setEmail(event.target.value)}
                               value={email}>
@@ -39,10 +40,10 @@ export function Login() {
                           </div>
 
                           <div className="form-group">
-                            <label class="form-label mt-4">Password</label>
+                            <label className="form-label mt-4">Password</label>
                             <input
                               type="password"
-                              class="form-control"
+                              className="form-control"
                               placeholder="Password"
                               onChange={event => setSenha(event.target.value)}
                               value={senha}>
@@ -50,8 +51,8 @@ export function Login() {
                           </div>
 
                           <div style={{ paddingTop: '20px' }}>
-                            <button type="submit" class="btn btn-success" style={{ marginRight: '15px' }}>Login</button>
-                            <button type="button" class="btn btn-danger">Cadastrar</button>
+                            <button type="submit" className="btn btn-success" style={{ marginRight: '15px' }}>Login</button>
+                            <Link to={"/cadastrar"} className="btn btn-danger">Cadastrar</Link>
                           </div>
 
                         </div>
