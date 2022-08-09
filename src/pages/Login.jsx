@@ -54,7 +54,7 @@ export function Login() {
 
                           <div style={{ paddingTop: '20px' }}>
                             <button type="submit" className="btn btn-success" style={{ marginRight: '15px' }}>Login</button>
-                            <Link to={"/cadastrar"} className="btn btn-info">Cadastrar</Link>
+                            <Link to={"/cadastrar-usuario"} className="btn btn-info">Cadastrar</Link>
                           </div>
 
                         </div>
