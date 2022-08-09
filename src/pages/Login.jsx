@@ -31,22 +31,22 @@ export function Login() {
                       <fieldset>
                         <div className="form-group" style={{ marginTop: '-50px' }}>
                           <div className="form-group">
-                            <label className="form-label mt-4">Email address</label>
+                            <label className="form-label mt-4">Email</label>
                             <input
                               type="email"
                               className="form-control"
-                              placeholder="Enter email"
+                              placeholder="Digite o email"
                               onChange={event => setEmail(event.target.value)}
                               value={email}>
                             </input>
                           </div>
 
                           <div className="form-group">
-                            <label className="form-label mt-4">Password</label>
+                            <label className="form-label mt-4">Senha</label>
                             <input
                               type="password"
                               className="form-control"
-                              placeholder="Password"
+                              placeholder="Digite a senha"
                               onChange={event => setSenha(event.target.value)}
                               value={senha}>
                             </input>

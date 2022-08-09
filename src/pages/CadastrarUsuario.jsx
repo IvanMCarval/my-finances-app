@@ -77,7 +77,7 @@ export function CadastrarUsuario() {
 
                           <div style={{ paddingTop: '20px' }}>
                             <button type="submit" className="btn btn-success" style={{ marginRight: '15px' }}>Salvar</button>
-                            <Link to={"/"} className="btn btn-danger">Voltar</Link>
+                            <Link to={"/"} className="btn btn-danger">Cancelar</Link>
                           </div>
                         </div>
                       </fieldset>
