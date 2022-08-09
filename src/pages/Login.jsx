@@ -19,9 +19,9 @@ export function Login() {
 
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6" style={{ position: 'relative', left: '300px' }}>
+    <div className="container" style={{padding: '100px'}}>
+      <div className="column" style={{display: 'flex', justifyContent: 'center'}}>
+        <div className="col-md-13">
           <div className="bs-docs-section">
             <Card title="Login">
               <div className="row">
