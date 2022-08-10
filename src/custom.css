@@ -4113,7 +4113,6 @@ fieldset:disabled .btn {
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
   width: 40%;
-  margin: 100px 550px 100px 550px;
   align-items: center;
   padding: 15px;
 }
