@@ -1,94 +1,94 @@
-import axios from "axios";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Card } from "../components/Card";
+import React from "react";
+import { withRouter } from "react-router-dom";
+import Card from "../components/Card";
 
-export function Login() {
-  const navigate = useNavigate()
+import UsuarioService from "../services/usuario/usuarioService";
 
-  const [email, setEmail] = useState('')
-  const [senha, setSenha] = useState('')
-
-  const [mensagemErro, setMensagemErro] = useState('')
-
-  function validarCamposLogin(e) {
-    e.preventDefault();
-
-    if (email != '' && senha != '') {
-      setEmail(email);
-      setSenha(senha);
-
-      logar()
-    } else {
-      alert("informe email e senha")
-    }
+class Login extends React.Component {
+  state = {
+    email: '',
+    senha: '',
+    mensagemErro: null
   }
 
-  function logar() {
-    axios.post('http://localhost:8080/api/usuarios/autenticar', {
-      email: email,
-      senha: senha
-    }).then(function (response) {
-      navigate('/home')
-    }).catch(function (erro) {
-      setMensagemErro(erro.response.data)
+  constructor() {
+    super()
+    this.service = new UsuarioService()
+  }
+
+  cadastrar = () => {
+    this.props.history.push("/cadastrar-usuario")
+  }
+
+  logar = () => {
+    this.service.autenticar({
+      email: this.state.email,
+      senha: this.state.senha
+    }).then(response => {
+      localStorage.setItem('_usuario_logado', JSON.stringify(response.data))
+      this.props.history.push("/home")
+    }).catch(erro => {
+      console.log(erro.response)
+      this.setState({ mensagemErro: erro.response.data })
     })
   }
 
 
-  return (
-    <div className="container" style={{ padding: '100px' }}>
-      <div className="column" style={{ display: 'flex', justifyContent: 'center' }}>
-        <div className="col-md-13">
-          <div className="bs-docs-section">
-            <Card title="Login">
-              <div>
-                <span style={{color: 'orange'}}>{mensagemErro}</span>
-              </div>
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="bs-component">
-                    <form onSubmit={validarCamposLogin}>
+  render() {
+    return (
+      <div className="container" style={{ padding: '100px' }}>
+        <div className="column" style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className="col-md-13">
+            <div className="bs-docs-section">
+              <Card title="Login">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="bs-component">
                       <fieldset>
-                        <div className="form-group" style={{ marginTop: '-50px' }}>
+                        <div className="form-group">
                           <div className="form-group">
-                            <label className="form-label mt-4">Email</label>
+                            <label className="form-label my-6">Email</label>
                             <input
                               type="email"
                               className="form-control"
                               placeholder="Digite o email"
-                              onChange={event => setEmail(event.target.value)}
-                              value={email}>
+                              onChange={event => this.setState({ email: event.target.value })}
+                            >
                             </input>
                           </div>
 
                           <div className="form-group">
-                            <label className="form-label mt-4">Senha</label>
+                            <label className="form-label my-6">Senha</label>
                             <input
                               type="password"
                               className="form-control"
                               placeholder="Digite a senha"
-                              onChange={event => setSenha(event.target.value)}
-                              value={senha}>
+                              onChange={event => this.setState({ senha: event.target.value })}
+                            >
                             </input>
                           </div>
 
-                          <div style={{ paddingTop: '20px' }}>
-                            <button type="submit" className="btn btn-success" style={{ marginRight: '15px' }}>Login</button>
-                            <Link to={"/cadastrar-usuario"} className="btn btn-info">Cadastrar</Link>
+                          <div className="mt-1">
+                            <span style={{ color: 'orange' }}>{this.state.mensagemErro}</span>
                           </div>
 
+                          <div style={{ paddingTop: '20px' }}>
+                            <button onClick={this.logar} className="btn btn-success" style={{ marginRight: '15px' }}>Login</button>
+                            <button onClick={this.cadastrar} className="btn btn-info">Cadastrar</button>
+                          </div>
                         </div>
                       </fieldset>
-                    </form>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Card>
+
+              </Card>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
+
+export default withRouter(Login)

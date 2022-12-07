@@ -1,18 +1,20 @@
-import { Router } from './routes'
+import Router from './routes'
 
 import 'bootswatch/dist/quartz/bootstrap.css'
 import './custom.css'
 
-import { BrowserRouter} from 'react-router-dom'
-import { NavBar } from './components/NavBar'
+import NavBar from './components/NavBar'
+import React from 'react'
 
-function App() {
-  return (
-    <BrowserRouter>
-      <NavBar/>
-      <Router/>
-    </BrowserRouter>
-  )
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <NavBar />
+        <Router />
+      </div>
+    )
+  }
 }
 
 export default App

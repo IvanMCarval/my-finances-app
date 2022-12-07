@@ -1,14 +1,18 @@
-import { Route, Routes } from "react-router-dom";
-import { CadastrarUsuario } from "./pages/CadastrarUsuario";
-import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
+import { BrowserRouter, HashRouter, Route, Switch } from "react-router-dom";
+import CadastrarUsuario from "./pages/CadastrarUsuario";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
-export function Router() {
+function Router() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/cadastrar-usuario" element={<CadastrarUsuario />} />
-      <Route path="/home" element={<Home />} />
-    </Routes>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/cadastrar-usuario" component={CadastrarUsuario} />
+        <Route path="/home" component={Home} />
+      </Switch>
+    </BrowserRouter>
   )
 }
+
+export default Router

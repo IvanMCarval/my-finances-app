@@ -4143,6 +4143,14 @@ fieldset:disabled .btn {
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
 }
+.card-body-1 {
+  flex: 1 1 auto;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-bottom: 30px;
+  color: var(--bs-card-color);
+}
 .card-title {
   margin-bottom: var(--bs-card-title-spacer-y);
 }
@@ -7413,6 +7421,10 @@ fieldset:disabled .btn {
 .my-5 {
   margin-top: 6rem !important;
   margin-bottom: 6rem !important;
+}
+.my-6 {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 .my-auto {
   margin-top: auto !important;
