@@ -1,15 +1,22 @@
-import axios from "axios";
+import axios from 'axios'
 
 const httpClient = axios.create({
-  baseURL: 'http://localhost:8080'
+  baseURL: 'http://localhost:8080',
+  withCredentials: true,
 })
 
 class ApiService {
   constructor(apiurl) {
-    this.apiurl = apiurl;
+    this.apiurl = apiurl
   }
 
-  post(url , objeto) {
+  static registrarToken(token) {
+    if (token) {
+      httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
+  }
+
+  post(url, objeto) {
     const requstUrl = `${this.apiurl}${url}`
     return httpClient.post(requstUrl, objeto)
   }
@@ -23,11 +30,11 @@ class ApiService {
     const requstUrl = `${this.apiurl}${url}`
     return httpClient.delete(requstUrl)
   }
-  
+
   get(url) {
     const requstUrl = `${this.apiurl}${url}`
     return httpClient.get(requstUrl)
   }
 }
 
-export default ApiService;
+export default ApiService

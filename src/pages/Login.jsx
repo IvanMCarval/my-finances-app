@@ -1,14 +1,18 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import Card from "../components/Card";
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import { AuthContext } from '../ProvedorAutenticacao'
 
-import UsuarioService from "../services/usuario/usuarioService";
+import { mensagemErro } from '../components/toastr'
+
+import Card from '../components/Card'
+
+import UsuarioService from '../services/usuario/usuarioService'
 
 class Login extends React.Component {
   state = {
     email: '',
     senha: '',
-    mensagemErro: null
+    mensagemErro: null,
   }
 
   constructor() {
@@ -17,22 +21,24 @@ class Login extends React.Component {
   }
 
   cadastrar = () => {
-    this.props.history.push("/cadastrar-usuario")
+    this.props.history.push('/cadastrar-usuario')
   }
 
   logar = () => {
-    this.service.autenticar({
-      email: this.state.email,
-      senha: this.state.senha
-    }).then(response => {
-      localStorage.setItem('_usuario_logado', JSON.stringify(response.data))
-      this.props.history.push("/home")
-    }).catch(erro => {
-      console.log(erro.response)
-      this.setState({ mensagemErro: erro.response.data })
-    })
+    this.service
+      .autenticar({
+        email: this.state.email,
+        senha: this.state.senha,
+      })
+      .then((response) => {
+        this.context.iniciarSessao(response.data)
+        this.props.history.push('/home')
+      })
+      .catch((erro) => {
+        console.log(erro)
+        mensagemErro(erro.response.data)
+      })
   }
-
 
   render() {
     return (
@@ -48,24 +54,12 @@ class Login extends React.Component {
                         <div className="form-group">
                           <div className="form-group">
                             <label className="form-label my-6">Email</label>
-                            <input
-                              type="email"
-                              className="form-control"
-                              placeholder="Digite o email"
-                              onChange={event => this.setState({ email: event.target.value })}
-                            >
-                            </input>
+                            <input type="email" className="form-control" placeholder="Digite o email" onChange={(event) => this.setState({ email: event.target.value })}></input>
                           </div>
 
                           <div className="form-group">
                             <label className="form-label my-6">Senha</label>
-                            <input
-                              type="password"
-                              className="form-control"
-                              placeholder="Digite a senha"
-                              onChange={event => this.setState({ senha: event.target.value })}
-                            >
-                            </input>
+                            <input type="password" className="form-control" placeholder="Digite a senha" onChange={(event) => this.setState({ senha: event.target.value })}></input>
                           </div>
 
                           <div className="mt-1">
@@ -73,15 +67,18 @@ class Login extends React.Component {
                           </div>
 
                           <div style={{ paddingTop: '20px' }}>
-                            <button onClick={this.logar} className="btn btn-success" style={{ marginRight: '15px' }}>Login</button>
-                            <button onClick={this.cadastrar} className="btn btn-info">Cadastrar</button>
+                            <button onClick={this.logar} className="btn btn-success" style={{ marginRight: '15px' }}>
+                              <i className="pi pi-sign-in" /> Login
+                            </button>
+                            <button onClick={this.cadastrar} className="btn btn-info">
+                              <i className="pi pi-plus" /> Cadastrar
+                            </button>
                           </div>
                         </div>
                       </fieldset>
                     </div>
                   </div>
                 </div>
-
               </Card>
             </div>
           </div>
@@ -90,5 +87,7 @@ class Login extends React.Component {
     )
   }
 }
+
+Login.contextType = AuthContext
 
 export default withRouter(Login)
